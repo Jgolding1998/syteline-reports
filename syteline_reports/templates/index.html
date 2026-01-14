@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SyteLine Reports</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 2rem;
+        background-color: #f5f5f5;
+      }
+      h1, h2 {
+        color: #333;
+      }
+      form {
+        background-color: #fff;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 0.5rem;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-top: 0.5rem;
+      }
+      input, select {
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 0.25rem;
+        border: 1px solid #ccc;
+        border-radius: 0.25rem;
+      }
+      button {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 0.25rem;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #0069d9;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>SyteLine Reporting Portal</h1>
+    <p>Use the forms below to generate a sales summary or run an ad‑hoc query
+    against your SyteLine OData API.  Ensure your API base URL, configuration
+    and token are configured on the server.</p>
+    <h2>Sales Summary</h2>
+    <form method="post" action="/sales_report">
+      <label for="start_date">Start date:</label>
+      <input id="start_date" name="start_date" type="date" required>
+      <label for="end_date">End date:</label>
+      <input id="end_date" name="end_date" type="date" required>
+      <label for="group_by">Group by:</label>
+      <select id="group_by" name="group_by">
+        <option value="day">Day</option>
+        <option value="month">Month</option>
+        <option value="year">Year</option>
+      </select>
+      <button type="submit">Generate Report</button>
+    </form>
+    <h2>Ad‑Hoc Query</h2>
+    <form method="post" action="/query">
+      <label for="ido">IDO Name:</label>
+      <input id="ido" name="ido" type="text" placeholder="e.g. SLCustomers" required>
+      <label for="properties">Properties (comma‑separated):</label>
+      <input id="properties" name="properties" type="text" placeholder="e.g. CustNum,Name,City">
+      <label for="filter">Filter expression (optional):</label>
+      <input id="filter" name="filter" type="text" placeholder="e.g. State='IN'">
+      <label for="order_by">Order by (optional):</label>
+      <input id="order_by" name="order_by" type="text" placeholder="e.g. Name DESC">
+      <button type="submit">Execute Query</button>
+    </form>
+  </body>
+</html>
